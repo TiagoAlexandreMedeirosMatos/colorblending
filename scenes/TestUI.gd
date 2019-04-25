@@ -97,9 +97,12 @@ func combine_modulate():
 				mask_color = mask[1]
 				
 				if mask_pixel.r:
-					base_image_pixel.r *= mask_color.r
-					base_image_pixel.g *= mask_color.g
-					base_image_pixel.b *= mask_color.b
+					#base_image_pixel.r *= mask_color.r
+					#base_image_pixel.g *= mask_color.g
+					#base_image_pixel.b *= mask_color.b
+					base_image_pixel.r = (base_image_pixel.r * mask_color.r * mask_pixel.r) + (base_image_pixel.r * (1-mask_pixel.r))
+					base_image_pixel.g = (base_image_pixel.g * mask_color.g * mask_pixel.r) + (base_image_pixel.g * (1-mask_pixel.r))
+					base_image_pixel.b = (base_image_pixel.b * mask_color.b * mask_pixel.r) + (base_image_pixel.b * (1-mask_pixel.r))
 			
 			base_image.set_pixel(x, y, base_image_pixel)
 	
